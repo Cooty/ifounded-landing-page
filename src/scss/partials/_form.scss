@@ -53,3 +53,10 @@
 .text-center {
     text-align: center;
 }
+
+@media only screen and (max-height: 400px) {
+    .toolbar,
+    .navigation {
+        display: none;
+    }
+}
