@@ -1,0 +1,222 @@
+.numbered-list {
+    $bullet-w: 26px;
+    $bullet-w-lg: 30px;
+
+    counter-reset: numbered-list;
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 18px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: $brand-green;
+
+        @media only screen and (min-width: map-get($bp, md)) and (max-width: map-get($bp, lg) - 1) {
+            display: none;
+        }
+
+        @include at-least(map-get($bp, lg)) {
+            top: 18px;
+            left: $gutter-md / 2;
+            right: $gutter-md / 2;
+            bottom: auto;
+            width: auto;
+            height: 0;
+            background: none;
+            border-bottom: 1px solid $brand-green;
+        }
+
+        @include at-least(map-get($bp, xl)) {
+            left: $gutter-xl / 2;
+            right: $gutter-xl / 2;
+        }
+
+        @include at-least(map-get($bp, xxl)) {
+            left: $gutter-xxl / 2;
+            right: $gutter-xxl / 2;
+        }
+
+    }
+
+    @include at-least(map-get($bp, lg)) {
+        padding-top: 45px;
+    }
+
+    &__item {
+
+        > .box {
+            margin-left: 35px;
+
+            @include at-least(map-get($bp, md)) {
+                margin-left: 0;
+                height: 100%;
+                padding-top: 30px;
+            }
+
+            @media only screen and (min-width: map-get($bp, md)) and (max-width: map-get($bp, lg) - 1) {
+                padding-left: 50px;
+
+                &:after {
+                    left: 20px
+                }
+
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: 10px;
+                height: $bullet-w + 20;
+                top: 50%;
+                margin-top: -(($bullet-w + 20) / 2);
+                width: 2px;
+                background: $white;
+                z-index: 2;
+
+                @media only screen and (min-width: map-get($bp, md)) and (max-width: map-get($bp, lg) - 1) {
+                    display: none;
+                }
+
+                @include at-least(map-get($bp, lg)) {
+                    width: $bullet-w-lg + 20;
+                    left: 50%;
+                    margin-left: -(($bullet-w-lg + 20) / 2);
+                    margin-top: 0;
+                    height: 2px;
+                    top: 10px;
+                }
+
+            }
+
+        }
+
+        &:before {
+            counter-increment: numbered-list;
+            content: counter(numbered-list);
+            position: absolute;
+            border-radius: 100%;
+            background: $white;
+            border: 1px solid $brand-green;
+            color: $brand-grey;
+            padding-top: 5px;
+            text-align: center;
+            font-weight: 700;
+            top: 50%;
+            margin-top: -($bullet-w / 2);
+            @include size($bullet-w);
+
+            @media only screen and (min-width: map-get($bp, md)) and (max-width: map-get($bp, lg) - 1) {
+                z-index: 2;
+                left: 17px;
+            }
+
+            @include at-least(map-get($bp, lg)) {
+                @include size($bullet-w-lg);
+                margin-top: 0;
+                top: -42px;
+                left: 50%;
+                margin-left: -($bullet-w-lg / 2);
+                padding-top: 6px;
+            }
+
+        }
+
+        &:first-of-type,
+        &:last-of-type {
+
+            &:after {
+                content: '';
+                position: absolute;
+                background: $brand-green;
+                border-radius: 100%;
+                left: 13px;
+                @include size(10px);
+
+                @media only screen and (min-width: map-get($bp, md)) and (max-width: map-get($bp, lg) - 1) {
+                    display: none;
+                }
+
+            }
+
+        }
+
+        &:first-of-type {
+            &:after {
+                top: 0;
+
+                @include at-least(map-get($bp, lg)) {
+                    left: $gutter-md / 2;
+                    top: -32px;
+                }
+
+                @include at-least(map-get($bp, xl)) {
+                    left: $gutter-xl / 2;
+                }
+
+                @include at-least(map-get($bp, xxl)) {
+                    left: $gutter-xxl / 2;
+                }
+
+            }
+        }
+
+        &:last-of-type {
+
+            &:before {
+                background-color: $brand-green;
+                color: $white;
+
+                @media only screen and (min-width: map-get($bp, md)) and (max-width: map-get($bp, lg) - 1) {
+                    background-color: $white;
+                    color: $brand-green;
+                }
+
+            }
+
+            .box {
+                background: $brand-green;
+                color: $white;
+
+                .box__title {
+                    color: $white;
+                }
+
+                &:after {
+                    border-color: $white;
+                }
+
+                &:before {
+                    background-color: $brand-green;
+                }
+
+            }
+
+            &:after {
+                bottom: 0;
+
+                @include at-least(map-get($bp, lg)) {
+                    left: auto;
+                    right: $gutter-md / 2;
+                    top: -32px;
+                    bottom: auto
+                }
+
+                @include at-least(map-get($bp, xl)) {
+                    right: $gutter-xl / 2;
+                }
+
+                @include at-least(map-get($bp, xxl)) {
+                    right: $gutter-xxl / 2;
+                }
+
+            }
+
+        }
+
+
+
+    }
+
+}

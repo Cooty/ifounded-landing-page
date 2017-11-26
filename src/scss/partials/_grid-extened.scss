@@ -1,0 +1,26 @@
+.grid {
+    @include d-flex;
+    @include prefixer((flex-wrap: wrap), webkit ms);
+
+    .col {
+        @include make-col(100%);
+
+        &-md-50 {
+            @include at-least(map-get($bp, md)) {
+                @include make-col(50%);
+            }
+        }
+
+        &-lg-25 {
+            @include at-least(map-get($bp, lg)) {
+                @include make-col(25%);
+            }
+        }
+
+        &-50 {
+            @include make-col(50%);
+        }
+
+    }
+
+}

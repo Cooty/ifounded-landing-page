@@ -1,0 +1,55 @@
+.form {
+    background: $white;
+    padding: 30px 10px;
+    border-radius: $box-radius;
+    box-shadow: $box-shadow;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include at-least(map-get($bp, xl)) {
+        padding: 50px 20px;
+    }
+
+    &__label {
+        font-size: get-rem(12px);
+        margin-bottom: 4px;
+        display: inline-block;
+
+        @include at-least(map-get($bp, lg)) {
+            font-size: get-rem(14px);
+        }
+
+    }
+
+    &__input {
+        display: block;
+        background: $white;
+        border-radius: $box-radius;
+        border: 1px solid lighten($brand-grey, 20%);
+        padding: 8px 15px;
+        font-size: 14px;
+        width: 100%;
+        box-shadow: none;
+        @include prefixer((transition: border-color .3s ease), webkit);
+
+        @include at-least(map-get($bp, lg)) {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $brand-green;
+        }
+    }
+
+    textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+}
+
+.text-center {
+    text-align: center;
+}

@@ -1,0 +1,51 @@
+html,
+body {
+  @include size(100%);
+}
+
+* {
+    position: relative;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: $global-font;
+  font-size: 1em;
+  color: $text-color;
+  background: $bg-mid-grey;
+}
+
+body {
+  padding-top: $nav-h;
+
+  @include smaller-than(map-get($bp, md)) {
+      padding-bottom: $toolbar-h;
+  }
+
+  @include at-least(map-get($bp, md)) {
+    padding-top: $nav-h-md + $toolbar-h;
+  }
+
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+}
+
+svg {
+  fill: currentColor;
+}
+
+b, strong {
+  font-weight: 900;
+}
+
+i, em {
+  font-style: italic;
+}

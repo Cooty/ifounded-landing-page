@@ -1,0 +1,38 @@
+$brand-green: #3abfbf;
+$brand-grey: #62697f;
+$blue: #228dc8;
+$bg-light-grey: #f9fbfc;
+$bg-mid-grey: #f0f3f4;
+$white: #fff;
+$text-color: #3d414d;
+
+$global-font: 'PT Sans', sans-serif;
+$gutter: 10px;
+$gutter-md: 20px;
+$gutter-xl: 30px;
+$gutter-xxl: 40px;
+
+$box-radius: 2px;
+$box-shadow: 0 0 10px rgba(0, 0, 0, .2), 0 0 20px rgba(0, 0, 0, .1);
+
+$wrapper-mw: 1366px;
+
+$bp: (
+  xs: 0,
+  sm: 360px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1200px,
+  xxl: 1440px
+);
+
+$z: (
+  top: 1000,
+  middle: 100,
+  bottom: 10,
+  base: 1
+);
+
+$nav-h: 60px;
+$nav-h-md: 70px;
+$toolbar-h: 30px;

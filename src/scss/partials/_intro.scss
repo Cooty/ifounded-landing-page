@@ -1,0 +1,133 @@
+.intro {
+    $pad: 30px;
+    $w-md: 600px;
+    $w-lg: 800px;
+    $w-xxl: 1000px;
+    $w-illu-md: 300px;
+    $w-illu-lg: 400px;
+    $w-illu-xxl: 500px;
+    $offset-md: ((map-get($bp, md) - $w-md) / 2) - $gutter-md;
+    $offset-lg: ((map-get($bp, lg) - $w-lg) / 2) - $gutter-md;
+    $offset-xxl: ((map-get($bp, xxl) - $w-xxl) / 2) - $gutter-xxl;
+    $pad-left-md: $w-illu-md - $offset-md + $gutter-md;
+    $pad-left-lg: $w-illu-lg - $offset-lg + $gutter-md;
+    $pad-left-xxl: $w-illu-xxl - $offset-xxl + $gutter-xxl;
+
+    background: $white;
+    border-radius: $box-radius;
+    box-shadow: $box-shadow;
+    padding: $pad;
+
+    @include at-least(map-get($bp, md)) {
+        width: $w-md;
+        padding-left: $pad-left-md;
+        margin: 0 auto;
+    }
+
+    @include at-least(map-get($bp, lg)) {
+        width: $w-lg;
+        padding-left: $pad-left-lg;
+    }
+
+    @include at-least(map-get($bp, xxl)) {
+        width: $w-xxl;
+        padding-left: $pad-left-xxl;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: $pad / 2;
+        bottom: $pad / 2;
+        left: $pad / 2;
+        right: $pad / 2;
+        border: 1px solid $brand-green;
+
+        @include at-least(map-get($bp, md)) {
+            display: none;
+        }
+
+    }
+
+    &__header {
+        margin-top: -$pad;
+        background: $white;
+        padding: ($pad / 2) 0;
+        box-shadow: 5px 0 0 $white, -5px 0 0 $white;
+        font-size: get-rem(20px);
+
+        @include at-least(map-get($bp, xl)) {
+            font-size: get-rem(26px);
+        }
+
+        @include at-least(map-get($bp, md)) {
+            margin-top: 0;
+            padding-top: 10px;
+            margin-left: -($gutter-md + 10px);
+            box-shadow: 10px 0 0 $white, -10px 0 0 $white;
+        }
+
+        @include at-least(map-get($bp, xxl)) {
+            font-size: get-rem(32px);
+            margin-left: -($gutter-xxl + 20px);
+            box-shadow: 20px 0 0 $white, -20px 0 0 $white;
+        }
+
+    }
+
+    &__title {
+        font-weight: 900;
+        color: $brand-grey;
+        font-size: 1em;
+        margin: -10px 0 .6em 0;
+        line-height: 1.1;
+
+        @include at-least(map-get($bp, xl)) {
+            margin-bottom: .4em;
+        }
+
+        @include at-least(map-get($bp, md)) {
+            margin-top: 0;
+        }
+
+    }
+
+    &__sub-title {
+        font-size: .9em;
+        line-height: 1.2;
+        color: rgba($brand-grey, .8);
+    }
+
+    &__illustration {
+        width: $w-illu-md;
+        top: $pad / 2;
+        left: -$offset-md;
+        background: $brand-grey;
+
+        @include at-least(map-get($bp, lg)) {
+            width: $w-illu-lg;
+            left: -$offset-lg;
+        }
+
+        @include at-least(map-get($bp, xxl)) {
+            width: $w-illu-xxl;
+            left: -$offset-xxl;
+        }
+
+        > img {
+            width: 100%;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            border: 1px solid $brand-green;
+        }
+
+    }
+
+}

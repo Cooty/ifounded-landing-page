@@ -1,0 +1,98 @@
+.hero {
+  $fixed-elements-h: $nav-h + $toolbar-h;
+  $fixed-elements-h-md: $nav-h-md + $toolbar-h;
+  height: calc(80vh - #{$fixed-elements-h});
+  background-color: $brand-grey;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  text-align: center;
+  color: $white;
+  font-size: get-rem(24px);
+  @include at-least(map-get($bp, md)) {
+        font-size: get-rem(40px);
+    }
+
+    @include at-least(map-get($bp, lg)) {
+        font-size: get-rem(50px);
+    }
+
+    @include at-least(map-get($bp, xl)) {
+        font-size: get-rem(60px);
+    }
+
+  @media only screen and (max-width: map-get($bp, sm)) {
+    background-image: url('../images/hero/xs.jpg');
+  }
+
+  @include at-least(map-get($bp, sm) + 1) {
+    height: calc(80vh - #{$fixed-elements-h-md});
+    background-image: url('../images/hero/md.jpg');
+  }
+
+  @include at-least(map-get($bp, lg)) {
+    background-image: url('../images/hero/lg.jpg');
+  }
+
+  @include at-least(map-get($bp, xl)) {
+    background-image: url('../images/hero/xl.jpg');
+  }
+
+  @include at-least(map-get($bp, xxl)) {
+    background-image: url('../images/hero/xxl.jpg');
+  }
+
+  &__gradient-anim {
+    background: linear-gradient(230deg, $brand-green, $blue, $brand-grey);
+    background-size: 400% 400%;
+    animation: gradient 7s ease-in-out infinite;
+    opacity: .8;
+  }
+
+  &__titles {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    margin-bottom: 1em;
+  }
+
+  &__title {
+    font-size: 1em;
+    font-weight: 900;
+    padding-bottom: .7em;
+    margin-bottom: .8em;
+
+    &:after {
+        $w: 80px;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width: $w;
+        height: 2px;
+        background-color: $white;
+        left: 50%;
+        margin-left: -($w / 2);
+    }
+
+  }
+
+  &__sub-title {
+    font-size: .7em;
+    color: rgba($white, .8);
+  }
+
+  .button {
+      font-size: .6em;
+      box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+
+      @include at-least(map-get($bp, md)) {
+        font-size: .4em;
+      }
+
+  }
+
+}
+
+@include keyframes(gradient) {
+    0%{background-position:97% 0%}
+    50%{background-position:4% 100%}
+    100%{background-position:97% 0%}
+}

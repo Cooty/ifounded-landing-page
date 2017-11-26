@@ -1,0 +1,260 @@
+.navigation {
+  position: fixed;
+  z-index: map-get($z, top);
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: $nav-h;
+  background: $white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .2), 0 1px 8px rgba(0, 0, 0, .1);
+
+  @include at-least(map-get($bp, md)) {
+    top: $toolbar-h;
+    height: $nav-h-md;
+  }
+
+  &__logo {
+    position: absolute;
+    left: $gutter;
+    top: 50%;
+    z-index: 2;
+    @include size(110px, 40px);
+    @include prefixer((transform: translate(0, -50%)), webkit ms);
+
+    > svg {
+      width: 110px;
+      height: 40px;
+    }
+
+    @include at-least(map-get($bp, md)) {
+      left: $gutter-md;
+    }
+
+    @include at-least(map-get($bp, xl)) {
+      left: $gutter-xl;
+    }
+
+    @include at-least(map-get($bp, xxl)) {
+      left: $gutter-xxl;
+    }
+
+  }
+
+  &__mobile-button {
+    $size: 30px;
+
+    position: absolute;
+    display: block;
+    top: ($nav-h - $size) / 2;
+    right: $gutter;
+    width: $size;
+    height: $size;
+    background: none;
+    border: 0;
+    padding: 0;
+    color: $brand-green;
+    outline: 0;
+
+    @include hover-focus() {
+      outline: none;
+    }
+
+    // animate hamburder stripes
+    > span {
+     position: absolute;
+     display: block;
+     height: 2px;
+     border-radius: 10px;
+     left: 0px;
+     right: 0px;
+     background-color: currentColor;
+     transition: all .3s ease-in-out;
+
+       &:nth-child(1) {
+           top: 6px;
+       }
+
+       &:nth-child(2) {
+           top: 14px;
+       }
+
+       &:nth-child(3) {
+           bottom: 6px; // needs to animate from bottom
+       }
+
+      .navigation-show & {
+
+          &:nth-child(even) {
+              display: none;
+          }
+
+          &:nth-child(1) {
+              top: 13px;
+              @include prefixer((transform: rotate(-45deg)), webkit);
+          }
+
+         &:nth-child(3) {
+            bottom: 15px;
+            @include prefixer((transform: rotate(45deg)), webkit);
+          }
+
+      }
+
+    }
+
+  }
+
+  &__list {
+    display: none;
+    opacity: 0;
+    position: fixed;
+    top: $nav-h;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding-top: 60px;
+    background: rgba($white, .9);
+    @include prefixer((transition: all .3s ease), webkit);
+
+    .navigation-show & {
+      display: block;
+    }
+
+    .navigation-animate & {
+      opacity: 1;
+    }
+
+    @include at-least(map-get($bp, md)) {
+      position: absolute;
+      z-index: 1;
+      display: block;
+      opacity: 1;
+      right: $gutter-md;
+      left: auto;
+      top: 50%;
+      padding-top: 0;
+      background: none;
+      white-space: nowrap;
+      @include prefixer((transform: translate(0, -50%)), webkit ms);
+    }
+
+    @include at-least(map-get($bp, xl)) {
+      right: $gutter-xl
+    }
+
+    @include at-least(map-get($bp, xxl)) {
+      right: $gutter-xxl;
+      left: $gutter-xxl;
+      text-align: center;
+    }
+
+  }
+
+  &__list__item {
+    text-align: center;
+    padding: 22px 0;
+    opacity: 0;
+    @include prefixer((transform: translateY(10px)), webkit ms);
+    @include prefixer((transition: all .3s ease), webkit);
+
+    &:nth-child(1) {
+      @include prefixer((transition-delay: .1s), webkit);
+    }
+
+    &:nth-child(2) {
+      @include prefixer((transition-delay: .2s), webkit);
+    }
+
+    &:nth-child(3) {
+      @include prefixer((transition-delay: .3s), webkit);
+    }
+
+    &:nth-child(4) {
+      @include prefixer((transition-delay: .4s), webkit);
+    }
+
+    &:nth-child(5) {
+      @include prefixer((transition-delay: .5s), webkit);
+    }
+
+    .navigation-animate & {
+      opacity: 1;
+      @include prefixer((transform: translateY(0)), webkit ms);
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: $gutter;
+      right: $gutter;
+      bottom: 0;
+      height: 1px;
+      background: rgba(0, 0, 0, .1);
+    }
+
+    &:last-of-type {
+
+      &:after {
+        display: none;
+      }
+
+    }
+
+    @include at-least(map-get($bp, md)) {
+      padding: 0 $gutter;
+      opacity: 1;
+      @include prefixer((transform: none), webkit ms);
+
+      &:after {
+        display: none;
+      }
+
+      &:last-of-type {
+        padding-right: 0 !important;
+      }
+
+    }
+
+    @include at-least(map-get($bp, xxl)) {
+      padding: 0 $gutter-xl / 2;
+    }
+
+  }
+
+  &__link {
+    padding: 8px 0;
+    font-size: get-rem(24px);
+
+    @include at-least(map-get($bp, md)) {
+      padding: 12px 0 10px 0;
+      font-size: get-rem(16px);
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 4px;
+        height: 2px;
+        background: $brand-green;
+        @include prefixer((transition: all .3s ease-in), webkit);
+        @include prefixer((transform: scale(0)), webkit ms);
+      }
+
+      @include hover-focus() {
+
+        &:after {
+          @include prefixer((transform: scale(1)), webkit ms);
+        }
+
+      }
+
+    }
+
+    @include at-least(map-get($bp, xxl)) {
+      font-size: get-rem(18px);
+    }
+
+  }
+
+}

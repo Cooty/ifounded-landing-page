@@ -1,0 +1,74 @@
+.d-block {
+  display: block;
+}
+
+.d-none {
+  display: none;
+}
+
+.d-md-block {
+  @include at-least(map-get($bp, md)) {
+    display: block;
+  }
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-md-inline-block {
+  @include at-least(map-get($bp, md)) {
+    display: inline-block;
+  }
+}
+
+.d-md-none {
+  @include at-least(map-get($bp, md)) {
+    display: none;
+  }
+}
+
+.pos-a {
+  position: absolute;
+}
+
+.fill {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.bottom-layer {
+  z-index: 1;
+}
+
+.top-layer {
+  z-index: 2;
+}
+
+.v-center {
+  white-space: nowrap;
+
+  &:before,
+  > .centered {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  &:before {
+    content: '';
+    position: relative;
+    height: 100%;
+    margin-right: -.25em;
+  }
+
+  > .centered {
+    white-space: normal;
+  }
+
+}
+
+.h-100 {
+  height: 100%;
+}

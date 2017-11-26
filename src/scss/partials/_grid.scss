@@ -1,0 +1,23 @@
+.col {
+  padding: 0 $gutter / 2;
+  margin-bottom: $gutter-md;
+
+  &:last-of-type {
+    @include smaller-than(map-get($bp, md)) {
+        margin-bottom: 0;
+    }
+  }
+
+  @include at-least(map-get($bp, md)) {
+    padding: 0 $gutter-md / 2;
+  }
+
+  @include at-least(map-get($bp, xl)) {
+    padding: 0 $gutter-xl / 2;
+  }
+
+  @include at-least(map-get($bp, xxl)) {
+    padding: 0 $gutter-xxl / 2;
+  }
+
+}

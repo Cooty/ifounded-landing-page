@@ -1,0 +1,122 @@
+.toolbar {
+  position: fixed;
+  z-index: map-get($z, top) - 1;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: $toolbar-h;
+  background: $brand-green;
+  text-align: center;
+  font-size: get-rem(12px);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+  @include d-flex;
+  @include prefixer((align-items: center,justify-content: space-between), webkit ms);
+  @include prefixer((transition: all .3s ease-in), webkit);
+
+  @include at-least(map-get($bp, lg)) {
+    font-size: get-rem(14px);
+  }
+
+  @include at-least(map-get($bp, md)) {
+    bottom: auto;
+    top: 0;
+  }
+
+  &,
+  a {
+    color: $white;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, .1);
+  }
+
+  &__dl-link {
+
+    @include hover-focus {
+      text-decoration: underline;
+    }
+
+  }
+
+  &__lang {
+    padding-left: $gutter;
+
+    @include at-least(map-get($bp, md)) {
+      padding-left: $gutter-md
+    }
+
+    @include at-least(map-get($bp, xl)) {
+      padding-left: $gutter-xl
+    }
+
+    @include at-least(map-get($bp, xxl)) {
+      padding-left: $gutter-xxl
+    }
+
+  }
+
+  &__lang__item {
+    text-transform: uppercase;
+    text-decoration: underline;
+
+    @include hover-focus {
+      text-decoration: none;
+    }
+
+    &:first-child {
+      padding-right: 10px;
+      border-right: 1px solid rgba(255, 255, 255, .8);
+    }
+
+    &:last-child {
+      padding-left: 10px;
+    }
+
+    &.active {
+      color: rgba(255, 255, 255, .7);
+      text-decoration: none;
+    }
+
+  }
+
+  &__phone {
+    padding-right: $gutter;
+
+    @include at-least(map-get($bp, md)) {
+      padding-right: $gutter-md
+    }
+
+    @include at-least(map-get($bp, xl)) {
+      padding-right: $gutter-xl
+    }
+
+    @include at-least(map-get($bp, xxl)) {
+      padding-right: $gutter-xxl
+    }
+
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    > svg {
+      margin-right: 5px;
+      @include size(20px);
+    }
+
+    @include hover-focus {
+      > span {
+        text-decoration: underline;
+      }
+    }
+
+  }
+
+}

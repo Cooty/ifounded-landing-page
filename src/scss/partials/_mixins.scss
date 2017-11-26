@@ -1,0 +1,148 @@
+@mixin smaller-than($bp) {
+
+  @media only screen and (max-width: $bp - 1) {
+    @content
+  }
+
+}
+
+@mixin at-least($bp) {
+
+  @media only screen and (min-width: $bp) {
+    @content
+  }
+
+}
+
+@mixin hover-focus() {
+
+  &:hover,
+  &:focus {
+    @content
+  }
+
+}
+
+/// Mixin to prefix several properties at once
+/// @author Hugo Giraudel
+/// @param {Map} $declarations - Declarations to prefix
+/// @param {List} $prefixes (()) - List of prefixes to print
+@mixin prefixer($declarations, $prefixes: ()) {
+  @each $property, $value in $declarations {
+    @each $prefix in $prefixes {
+      #{'-' + $prefix + '-' + $property}: $value;
+    }
+
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+  }
+}
+
+@mixin ripple-effect() {
+
+  // Material Design ripple effect: https://ghinda.net/article/css-ripple-material-design/
+  overflow: hidden;
+
+  &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 300px;
+      height: 300px;
+      margin-left: -150px;
+      margin-top: -150px;
+      background-color: rgba($white, .4);
+      border-radius: 100%;
+      visibility: hidden; // fixes initial animation run, without user input, on page load.
+      @include prefixer(transform, scale(0), webkit ms);
+  }
+
+  &:not(:active):after {
+      @include prefixer(animation, ripple 1.6s $ease-out-quad, webkit);
+  }
+
+  &:focus:after {
+      visibility: visible;
+  }
+
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin custom-scrollbar() {
+  /* Let's get this party started */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: rgba(#222122, .9);
+    border-radius: 8px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: $panel-border-grey;
+  }
+}
+
+$animation-prefix-list: "webkit", "";
+
+// Keyframe mixin.
+// Since sass currenly won't let you add dynamically create @keframes prefixes we have to
+// run through a couple if statements.
+@mixin keyframes($animationName){
+  @each $pfx in $animation-prefix-list {
+    $prefix: if($pfx == "", "", #{"-"+$pfx+"-"});
+    @if $pfx == "webkit"{
+      @-webkit-keyframes #{$animationName}{
+        @content;
+      }
+    }@else if $pfx == "moz"{
+      @-moz-keyframes #{$animationName}{
+        @content;
+      }
+    }@else if $pfx == "ms"{
+      @-ms-keyframes #{$animationName}{
+        @content;
+      }
+    }@else if $pfx == "o"{
+      @-o-keyframes #{$animationName}{
+        @content;
+      }
+    }@else{
+      @keyframes #{$animationName}{
+        @content;
+      }
+    }
+  }
+}
+
+@mixin clearfix {
+  &:after {
+      content: '';
+      display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin d-flex() {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin make-col($w) {
+    max-width: $w;
+    @include prefixer((flex: 0 0 $w), webkit ms);
+}
